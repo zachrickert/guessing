@@ -69,8 +69,15 @@ class Game (object):
                 print("HIGHER")
 
             self.numb_of_guess -= 1
-            print("You now have " + str(self.numb_of_guess) + " guesses left.")
-            self.guess_number()
+            if (self.numb_of_guess == 1):
+                print("Look Buddy! You have just one guess left. You better make it count.")
+                self.guess_number()
+            elif (self.numb_of_guess > 1):
+                print("You now have " + str(self.numb_of_guess) + " guesses left.")
+                self.guess_number()
+            else:
+                print("Sorry, you are out of guesses.")
+                print("The correct number was " + str(self.target))
 
 
 def main():
