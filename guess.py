@@ -5,11 +5,23 @@ class Match (object):
 
     def __init__(self):
         self.play = True
+        self.achiev_first = False
 
     def replay(self):
         answer = input("Do you want to play again? ")
         if (answer.lower() == "no" or answer.lower() == "n"):
             self.play = False
+
+    def achievements(self, last_game):
+        if(not(self.achiev_first) and last_game.win):
+            print("***ACHIEVEMENT UNLOCKED***")
+            self.achiev_first = True
+
+    # def achiev_unlock(self, achievement):
+    #     print(self.achiev_first)
+    #     print("***ACHIEVEMENT UNLOCKED***")
+    #     self.achievement = True
+    #     print(self.achiev_first)
 
 
 class Game (object):
@@ -74,6 +86,7 @@ class Game (object):
         guess = int(input("Guess a number between 1 & " + str(self.top_numb) + ": "))
         if (guess == self.target):
             print("Great Guess!!! You are correct!")
+            self.win = True
         else:
             if(guess > self.target):
                 print("LOWER")
@@ -97,9 +110,11 @@ def main():
     my_game = Game()
     my_game.description()
     while my_match.play:
+        my_game.win = False
         my_game.set_level()
         my_game.set_random()
         my_game.guess_number()
+        my_match.achievements(my_game)
         my_match.replay()
 
 
