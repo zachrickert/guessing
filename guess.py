@@ -1,7 +1,19 @@
 # A Number Guessing Games
 
 
+class Match (object):
+
+    def __init__(self):
+        self.play = True
+
+    def replay(self):
+        answer = input("Do you want to play again? ")
+        if (answer.lower() == "no" or answer.lower() == "n"):
+            self.play = False
+
+
 class Game (object):
+
     def description(self):
         print()
         print("This is a number guessing game.")
@@ -81,11 +93,14 @@ class Game (object):
 
 
 def main():
+    my_match = Match()
     my_game = Game()
     my_game.description()
-    my_game.set_level()
-    my_game.set_random()
-    my_game.guess_number()
+    while my_match.play:
+        my_game.set_level()
+        my_game.set_random()
+        my_game.guess_number()
+        my_match.replay()
 
 
 main()
