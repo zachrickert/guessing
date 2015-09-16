@@ -58,13 +58,27 @@ class Game (object):
         import random
         self.target = random.randint(1, self.top_numb)
 
+    def guess_number(self):
+        guess = int(input("Guess a number between 1 & " + str(self.top_numb) + ": "))
+        if (guess == self.target):
+            print("Great Guess!!! You are correct!")
+        else:
+            if(guess > self.target):
+                print("LOWER")
+            else:
+                print("HIGHER")
+
+            self.numb_of_guess -= 1
+            print("You now have " + str(self.numb_of_guess) + " guesses left.")
+            self.guess_number()
+
 
 def main():
     my_game = Game()
     my_game.description()
     my_game.set_level()
     my_game.set_random()
-    print(my_game.target)
+    my_game.guess_number()
 
 
 main()
